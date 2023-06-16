@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>弹幕</title>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        #danmu {
+            border: 3px solid #000;
+            border-radius: 10px;
+        }
+        .hhh {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hhh"></div>
+    <div class="dmdiv">
+        <canvas id="danmu"></canvas>
+    </div>
+</body>
+<script>
+    //随机数 min到max
+    function getRandomInt(min, max) {
+        return min + Math.floor(Math.random() * (max - min));
+    }
+
+    window.onresize = function (argument) {
+        onload();
+    };
+
+    window.onload = function (argument) {
+        let words = ["电工一班", "电工二班", "电工三班", "电工四班", "电工五班", "无言的纯洁的天真，往往比说话更能打动人心", "hello", "world", "!!!", "韩梦瑶","难绷","彼方尚有荣光在！","一个人用笔完成的东西远远多于它的灵魂","你若安好，便是晴天","亲爱的朋友，愿你的太阳找到你，愿你找到自己的太阳","风华正茂的年纪，你应该所向披靡","齐桥No.2","文庙No.1","愿我班大白小子，越发越白，越长越帅","不用记得我太多，记得我爱喝茉莉蜜茶就好","永远浪漫，永远自由","相识在夏季，陪伴在四季","平安，健康，喜乐","永远是犟的，就是想要最真的","Yy","明天依旧在你身边，数不尽的明天","初中时的梦终究是梦，高中现实打击着每一个嘴硬的人","质疑声会很多，勇敢真诚地做自己就好","海压竹枝低复举,风吹山角晦还明","心有多大，世界便有多大","我说怎么走散了，原来是起风了","我的青梅绿茶呢？","迄今为止所有人生都大写着失败，但不妨碍我继续向前","蓄谋已久的相遇","可是我很倔，我要做的事一定要做到，认定的人也一定要得到","年年有好果子吃","天天开心，吃的饱，喝的好，玩的美","明日待，今日努，现在的努力，决定未来的美好。","🍀在明天里会有一个更好的自己","前程似锦","以后的路还需自己闯！我要学会坚强☀","努力，奋斗，不要辜负自己的青春","邪恶的小怪兽，都将被正义的奥特曼杀死！","6","尹晓杰到此一游","有人在黄昏等日出，而我在等你","生命诚可贵，爱情价更高，若为自由故，两者皆可抛","Avicii Torever","愿自己天天都开开心心，快快乐乐，无悠无虑😊","革命尚未成功，同志还须努力","时光短暂愿您天天丰满，快快乐乐","心有思，地无边，不恋过去，不畏将来，把持当下","命运这种东西，生平就要被踏于足下，如果你还未有力量反抗它，只需要怀着勇气等待","风在吹，花在开，雾弥漫，你我岁岁平安","我问小狗怎样才能开心，小狗说：“忘，忘，忘”","我能做的只有做自己和变优秀","好好学习，天天向上🌼","因为热爱，所以坚持，无法妥协，所以拼命","∩_∩","加强马超，加强二代，加强李信","望我们未来可期","多读书多看报，少吃零食多睡觉","祝我们前程似锦","野火烧不尽，春风吹又生","每天平平安安，健健康康，高高兴兴的度过三年","回调仙人兜","君子坐而论道，少年起而行之","希望以后能一直有个好运气","高中三年出个刻晴，求求了","海潮迎接你们的王","浮生景色百千年依旧，人之在世却如白露般泡影","要怎么组未来的拼图","光荣啊！展望未来的人！","三年后的我，你上国服了吗","花有重开日，人无再少年","高中，人生的转折，未来由我决定","欲买桂花同载酒，终不似，少年游","加强陈二","东风吹破少年梦，从此再无赤子心","想对以后的自己说一句，不要给青春留遗憾","王铭赫到此一游","珍惜当下，别留遗憾","不忘初心","坚信自己的选择","别让过去成为遗憾","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
+        let allWord = [];
+        let canvas = document.getElementById('danmu');
+        canvas.width = window.innerWidth * 0.98;
+        canvas.height = window.innerHeight;
+        let ctx = canvas.getContext('2d'),
+            canvasW = canvas.width,
+            canvasH = canvas.height;
+        ctx.fillStyle = '#fff';
+        function Word(key) {
+            this.text = key;
+            this.bgColor = "#fff";
+            this.borderColor = "#000";
+            this.borderWidth = 2;
+            this.x = Math.random() * canvasW;
+            this.y = Math.random() * canvasH;
+            this.font = getRandomInt(12, 28) + 'px arial';
+            this.speed = getRandomInt(2, 5) - Math.random();
+        }
+
+        for (let i = 0; i < words.length; i++) {
+            allWord.push(new Word(words[i]));
+        }
+
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+            var min_size = Math.min(w, h);
+            if (r > min_size / 2) r = min_size / 2;
+            // 开始绘制圆角矩形
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        }
+
+        //更新
+        function update() {
+            for (let i = 0; i < allWord.length; i++) {
+                ctx.font = allWord[i].font;
+                ctx.fillStyle = allWord[i].bgColor;
+                // 绘制圆角矩形
+                ctx.roundRect(allWord[i].x, allWord[i].y - parseInt(allWord[i].font), allWord[i].width + 15, parseInt(allWord[i].font) + 10, 10).fill();
+                // 绘制边框
+                ctx.lineWidth = allWord[i].borderWidth;
+                ctx.strokeStyle = allWord[i].borderColor;
+                ctx.roundRect(allWord[i].x, allWord[i].y - parseInt(allWord[i].font), allWord[i].width + 15, parseInt(allWord[i].font) + 10, 10).stroke();
+                // 绘制文本
+                ctx.fillStyle = '#000';
+                ctx.fillText(allWord[i].text, allWord[i].x + 5, allWord[i].y);
+                allWord[i].width = ctx.measureText(allWord[i].text).width;
+                // 更新位置
+                if (allWord[i].x > canvasW) {
+                    allWord[i].x = -allWord[i].width;
+                    allWord[i].y = Math.random() * canvasH;
+                } else {
+                    allWord[i].x += allWord[i].speed;
+                }
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvasW, canvasH);
+            update();
+            window.requestAnimationFrame(draw);
+        }
+        draw();
+    };
+</script>
+
+</html>

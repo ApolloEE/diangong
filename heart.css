@@ -1,0 +1,253 @@
+body {
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+.roster {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.name {
+    display: flex;
+    flex: 0 0 auto;
+    background-color: #fff;
+    margin: 1px 1px;
+    border-radius: 7px;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s, color 1s;
+}
+
+.name:hover {
+    cursor: url("./av1pg-33.svg"), auto;
+}
+
+.name:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.header {
+    font-size: 3vw;
+}
+
+.fade-in-text {
+    color: #000;
+}
+
+.fade-in-text.show {
+    opacity: 0;
+    /* 文字初始透明度为0 */
+    animation: fade-in 2s forwards;
+}
+
+.fade-in-text.hide {
+    animation: fadeOutUp 2s ease forwards;
+}
+
+.fc.show {
+    opacity: 0;
+    /* 文字初始透明度为0 */
+    animation: fade-in 2s forwards;
+}
+
+.fc.hide {
+    animation: fadeOutUp 2s ease forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-200px);
+        /* 初始位置为向上200px */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* 最终位置为原来位置 */
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 5px;
+    width: 60vw;
+    height: 35vw;
+    margin: 10px 10px;
+}
+
+.photo .dp:last-child {
+    margin-bottom: 100px;
+}
+
+.photo .dp:first-child {
+    margin-top: 50px;
+}
+
+.budiv {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+}
+
+#bu {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border-radius: 6px;
+    /* box-shadow: 2px 2px 4px #999; */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+#bu:hover {
+    font-size: 26px;
+}
+
+#bu:active {
+    background-color: #d9d9d9;
+    outline: none;
+}
+
+#bu2 {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 8px 16px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border-radius: 6px;
+    /* box-shadow: 2px 2px 4px #999; */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+#bu2:hover {
+    /* box-shadow: 3px 3px 6px #999; */
+    font-size: 26px;
+}
+
+#bu2:active {
+    background-color: #d9d9d9;
+    outline: none;
+}
+
+.dino {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+
+
+    user-select: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    transition: all 1s ease;
+}
+
+#game {
+    border: 3px solid #000;
+    border-radius: 10px;
+    width: 90%;
+}
+
+#danmu {
+    border: 0px solid #000;
+    border-radius: 10px;
+    width: 100%;
+    height: 0vh;
+    transition: all 1s ease;
+}
+
+#countdownletter {
+    width: 90%;
+}
+
+#countdownletter sign {
+    display: block;
+    text-align: right;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.fc {
+    display: flex;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
